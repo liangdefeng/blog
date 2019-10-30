@@ -6,7 +6,7 @@
     <data readOnly="true">
         <collection id="articlesDc"
                     class="com.spel.blog.entity.Article"
-                    view="_local">
+                    view="article-view">
             <loader id="articlesDl">
                 <query>
                     <![CDATA[select e from blog_Article e]]>
@@ -39,6 +39,7 @@
                 <column id="content"/>
                 <column id="toTop"/>
                 <column id="seoUrl"/>
+                <column id="author"/>
             </columns>
             <rowsCount/>
             <buttonsPanel id="buttonsPanel"

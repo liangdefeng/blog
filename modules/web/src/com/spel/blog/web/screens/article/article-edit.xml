@@ -6,8 +6,8 @@
     <data>
         <instance id="articleDc"
                   class="com.spel.blog.entity.Article"
-                  view="_local">
-            <loader/>
+                  view="article-view">
+            <loader id=""/>
         </instance>
     </data>
     <dialogMode height="600"
