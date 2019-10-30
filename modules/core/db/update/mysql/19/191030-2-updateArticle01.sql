@@ -1,0 +1,1 @@
+create unique index IDX_BLOG_ARTICLE_UNIQ_SEO_URL on BLOG_ARTICLE (SEO_URL) ;

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://editorCaption"
+        focusComponent="form"
+        messagesPack="com.spel.blog.web.screens.article">
+    <data>
+        <instance id="articleDc"
+                  class="com.spel.blog.entity.Article"
+                  view="_local">
+            <loader/>
+        </instance>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="editActions" spacing="true">
+        <form id="form" dataContainer="articleDc" width="100%">
+            <column width="250px">
+                <textField id="titleField" property="title" width="100%"/>
+                <checkBox id="toTopField" property="toTop"/>
+                <textArea id="abstractTextField" property="abstractText" rows="5" width="100%"/>
+                <richTextArea id="contentField" property="content" width="100%"/>
+                <textArea id="tagsField" property="tags" rows="5" width="100%"/>
+                <textField id="seoUrlField" property="seoUrl" width="100%"/>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button action="windowCommitAndClose"/>
+            <button action="windowClose"/>
+        </hbox>
+
+    </layout>
+</window>
