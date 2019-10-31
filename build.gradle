@@ -35,7 +35,6 @@ cuba {
     }
     tomcat {
         dir = "$project.rootDir/deploy/tomcat" 
-        port = '9090'
     }
 }
 

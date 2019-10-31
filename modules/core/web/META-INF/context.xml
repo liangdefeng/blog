@@ -13,7 +13,7 @@
           type="javax.sql.DataSource"
           url="jdbc:hsqldb:hsql://localhost:9010/blog-ZIHdnfUZ3"
           username="sa"/>-->
-    <Resource driverClassName="com.mysql.jdbc.Driver"
+    <Resource driverClassName="com.mysql.cj.jdbc.Driver"
               maxIdle="2"
               maxTotal="20"
               maxWaitMillis="5000"
