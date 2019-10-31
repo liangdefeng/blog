@@ -26,6 +26,7 @@
         <hbox id="editActions" spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>
+            <button action="popupMessage" box.expandRatio="0.0"/>
         </hbox>
 
     </layout>
