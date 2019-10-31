@@ -11,6 +11,7 @@ import com.haulmont.cuba.gui.model.InstanceContainer;
 import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.cuba.security.global.UserSession;
 import com.spel.blog.entity.Article;
+import com.spel.blog.service.MarkdownToHtmlService;
 
 import javax.inject.Inject;
 
@@ -19,6 +20,22 @@ import javax.inject.Inject;
 @EditedEntityContainer("articleDc")
 @LoadDataBeforeShow
 public class ArticleEdit extends StandardEditor<Article> {
+
+    @Inject
+    private BrowserFrame browserFrame;
+
+    @Subscribe("contentField")
+    public void onContentFieldValueChange1(HasValue.ValueChangeEvent<String> event) {
+        browserFrame.setSrcdoc(markdownToHtmlService.convert(event.getValue()));
+    }
+
+    @Inject
+    private MarkdownToHtmlService markdownToHtmlService;
+
+    @Subscribe("contentField")
+    public void onContentFieldTextChange(TextInputField.TextChangeEvent event) {
+        browserFrame.setSrcdoc(markdownToHtmlService.convert(event.getText()));
+    }
 
     @Inject
     private InstanceContainer<Article> articleDc;

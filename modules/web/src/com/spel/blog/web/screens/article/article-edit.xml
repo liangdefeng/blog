@@ -13,16 +13,20 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="editActions" spacing="true">
-        <form id="form" dataContainer="articleDc" width="100%">
-            <column width="250px">
-                <textField id="titleField" property="title" width="100%"/>
-                <checkBox id="toTopField" property="toTop"/>
-                <textArea id="abstractTextField" property="abstractText" rows="5" width="100%"/>
-                <richTextArea id="contentField" property="content" width="100%"/>
-                <textArea id="tagsField" property="tags" rows="5" width="100%"/>
-                <textField id="seoUrlField" property="seoUrl" width="100%"/>
-            </column>
-        </form>
+        <split orientation="horizontal" width="100%" height="600px" responsive="true" reversePosition="true"
+               stylename="colored" dockable="true">
+            <form id="form" dataContainer="articleDc" width="100%" height="600" responsive="true">
+                <column width="250px">
+                    <textField id="titleField" property="title" width="100%"/>
+                    <textArea id="contentField" property="content" width="100%"/>
+                    <checkBox id="toTopField" property="toTop"/>
+                    <textArea id="abstractTextField" property="abstractText" rows="5" width="100%"/>
+                    <textArea id="tagsField" property="tags" rows="5" width="100%"/>
+                    <textField id="seoUrlField" property="seoUrl" width="100%"/>
+                </column>
+            </form>
+            <browserFrame id="browserFrame" width="100%" caption="Preview" height="600" responsive="true"/>
+        </split>
         <hbox id="editActions" spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>
