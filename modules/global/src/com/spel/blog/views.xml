@@ -4,4 +4,9 @@
     <view entity="blog_Article" name="article-view" extends="_local">
         <property name="author" view="_minimal"/>
     </view>
+    <view entity="blog_Category" name="category-category-view" extends="_local">
+        <property name="parentCategory" view="_minimal">
+            <property name="parentCategory" view="_minimal"/>
+        </property>
+    </view>
 </views>

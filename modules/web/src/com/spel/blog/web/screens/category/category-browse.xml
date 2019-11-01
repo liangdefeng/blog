@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
+        caption="msg://browseCaption"
+        focusComponent="categoriesTable"
+        messagesPack="com.spel.blog.web.screens.category">
+    <data readOnly="true">
+        <collection id="categoriesDc"
+                    class="com.spel.blog.entity.Category"
+                    view="category-category-view">
+            <loader id="categoriesDl">
+                <query>
+                    <![CDATA[select e from blog_Category e]]>
+                </query>
+            </loader>
+        </collection>
+    </data>
+    <dialogMode height="600"
+                width="800"/>
+    <layout expand="categoriesTable"
+            spacing="true">
+        <filter id="filter"
+                applyTo="categoriesTable"
+                dataLoader="categoriesDl">
+            <properties include=".*"/>
+        </filter>
+        <groupTable id="categoriesTable"
+                    width="100%"
+                    dataContainer="categoriesDc">
+            <actions>
+                <action id="create" type="create"/>
+                <action id="edit" type="edit"/>
+                <action id="remove" type="remove"/>
+                <action id="refresh" type="refresh"/>
+            </actions>
+            <columns>
+                <column id="parentCategory"/>
+                <column id="name"/>
+                <column id="description"/>
+            </columns>
+            <rowsCount/>
+            <buttonsPanel id="buttonsPanel"
+                          alwaysVisible="true">
+                <button id="createBtn" action="categoriesTable.create"/>
+                <button id="editBtn" action="categoriesTable.edit"/>
+                <button id="removeBtn" action="categoriesTable.remove"/>
+                <button id="refreshBtn" action="categoriesTable.refresh"/>
+            </buttonsPanel>
+        </groupTable>
+        <hbox id="lookupActions" spacing="true" visible="false">
+            <button action="lookupSelectAction"/>
+            <button action="lookupCancelAction"/>
+        </hbox>
+    </layout>
+</window>
