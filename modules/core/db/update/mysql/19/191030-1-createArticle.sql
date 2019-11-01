@@ -1,13 +1,5 @@
 create table BLOG_ARTICLE (
     ID integer,
-    CREATE_TS datetime(3),
-    CREATED_BY varchar(50),
-    UPDATE_TS datetime(3),
-    UPDATED_BY varchar(50),
-    VERSION integer not null,
-    DELETE_TS datetime(3),
-    DELETED_BY varchar(50),
-    --
     TITLE varchar(255) not null,
     ABSTRACT_TEXT longtext,
     TAGS longtext,
@@ -15,6 +7,10 @@ create table BLOG_ARTICLE (
     CONTENT longtext,
     TO_TOP boolean,
     SEO_URL varchar(255),
-    --
+    CREATE_TS datetime(3),
+    CREATED_BY varchar(50),
+    UPDATE_TS datetime(3),
+    UPDATED_BY varchar(50),
+    VERSION integer not null,
     primary key (ID)
 );

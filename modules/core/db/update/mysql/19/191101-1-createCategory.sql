@@ -7,10 +7,8 @@ create table BLOG_CATEGORY (
     VERSION integer not null,
     DELETE_TS datetime(3),
     DELETED_BY varchar(50),
-    --
     NAME varchar(255) not null,
     DESCRIPTION longtext,
     PARENT_CATEGORY_ID integer,
-    --
     primary key (ID)
 );

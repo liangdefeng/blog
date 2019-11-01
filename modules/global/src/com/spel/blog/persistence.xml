@@ -4,6 +4,5 @@
 
         <class>com.spel.blog.entity.Article</class>
         <class>com.spel.blog.entity.Category</class>
-        <class>com.spel.blog.entity.Comment</class>
     </persistence-unit>
 </persistence>
