@@ -17,7 +17,7 @@
     <context-param>
         <param-name>appComponents</param-name>
         <param-value>com.haulmont.cuba com.haulmont.reports cn.cuba.trans com.haulmont.addon.restapi com.haulmont.fts
-            com.haulmont.addon.dashboard com.haulmont.charts com.haulmont.addon.ldap com.haulmont.addon.globalevents</param-value>
+            com.haulmont.addon.dashboard com.haulmont.charts com.haulmont.addon.globalevents</param-value>
     </context-param>
     <listener>
         <listener-class>com.haulmont.cuba.core.sys.AppContextLoader</listener-class>
