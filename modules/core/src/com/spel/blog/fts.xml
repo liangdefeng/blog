@@ -4,5 +4,11 @@
         <entity class="com.spel.blog.entity.Article">
             <include re=".*"/>
         </entity>
+        <entity class="com.spel.blog.entity.Category">
+            <include re=".*"/>
+        </entity>
+        <entity class="com.spel.blog.entity.Comment">
+            <include re=".*"/>
+        </entity>
     </entities>
 </fts-config>
