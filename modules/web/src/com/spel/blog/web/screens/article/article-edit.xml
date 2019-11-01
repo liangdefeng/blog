@@ -10,28 +10,42 @@
             <loader id=""/>
         </instance>
     </data>
-    <dialogMode height="600"
-                width="800"/>
-    <layout expand="editActions" spacing="true">
-        <split orientation="horizontal" width="100%" height="600px" responsive="true" reversePosition="true"
-               stylename="colored" dockable="true">
-            <form id="form" dataContainer="articleDc" width="100%" height="600" responsive="true">
-                <column width="250px">
-                    <textField id="titleField" property="title" width="100%"/>
-                    <textArea id="contentField" property="content" width="100%"/>
-                    <checkBox id="toTopField" property="toTop"/>
-                    <textArea id="abstractTextField" property="abstractText" rows="5" width="100%"/>
-                    <textArea id="tagsField" property="tags" rows="5" width="100%"/>
-                    <textField id="seoUrlField" property="seoUrl" width="100%"/>
-                </column>
-            </form>
-            <browserFrame id="browserFrame" width="100%" caption="Preview" height="600" responsive="true"/>
+    <dialogMode height="600" width="800"/>
+    <layout expand="editActions">
+        <split id="mainSplit"
+               orientation="horizontal"
+               height="AUTO"
+               width="100%"
+               stylename="large"
+               dockable="true">
+            <vbox height="AUTO"
+                  width="100%"
+                  margin="true">
+                <form id="form" dataContainer="articleDc" responsive="true" width="100%">
+                    <column id="columns">
+                        <checkBox id="toTopField" property="toTop" height="AUTO"/>
+                        <textField id="titleField" property="title" height="AUTO" width="100%"/>
+                        <textArea id="contentField" property="content" height="AUTO" width="100%" rows="30"/>
+                        <textArea id="abstractTextField" property="abstractText" height="AUTO" width="100%" rows="5" />
+                        <textArea id="tagsField" property="tags" height="AUTO" width="100%" rows="5"/>
+                        <textField id="seoUrlField" property="seoUrl" height="AUTO" width="100%"/>
+                    </column>
+                </form>
+            </vbox>
+            <vbox height="AUTO"
+                  width="100%"
+                  margin="true">
+                <browserFrame id="browserFrame"
+                              height="AUTO"
+                              width="100%"
+                              caption="Preview"
+                              responsive="true"/>
+            </vbox>
         </split>
         <hbox id="editActions" spacing="true">
             <button action="windowCommitAndClose"/>
             <button action="windowClose"/>
             <button action="popupMessage" box.expandRatio="0.0"/>
         </hbox>
-
     </layout>
 </window>
