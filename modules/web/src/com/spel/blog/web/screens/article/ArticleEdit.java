@@ -11,7 +11,7 @@ import com.haulmont.cuba.gui.model.InstanceContainer;
 import com.haulmont.cuba.gui.screen.*;
 import com.haulmont.cuba.security.global.UserSession;
 import com.spel.blog.entity.Article;
-import com.spel.blog.service.MarkdownToHtmlService;
+import com.spel.blog.service.MarkdownService;
 
 import javax.inject.Inject;
 
@@ -21,21 +21,7 @@ import javax.inject.Inject;
 @LoadDataBeforeShow
 public class ArticleEdit extends StandardEditor<Article> {
 
-    @Inject
-    private BrowserFrame browserFrame;
-
-    @Subscribe("contentField")
-    public void onContentFieldValueChange1(HasValue.ValueChangeEvent<String> event) {
-        browserFrame.setSrcdoc(markdownToHtmlService.convert(event.getValue()));
-    }
-
-    @Inject
-    private MarkdownToHtmlService markdownToHtmlService;
-
-    @Subscribe("contentField")
-    public void onContentFieldTextChange(TextInputField.TextChangeEvent event) {
-        browserFrame.setSrcdoc(markdownToHtmlService.convert(event.getText()));
-    }
+    public final static String POOPUP_MESSAGE = "popupMessage";
 
     @Inject
     private InstanceContainer<Article> articleDc;
@@ -43,7 +29,14 @@ public class ArticleEdit extends StandardEditor<Article> {
     @Inject
     private UserSession userSession;
 
-    String POOPUP_MESSAGE = "popupMessage";
+    @Inject
+    private BrowserFrame browserFrame;
+
+    @Inject
+    private MarkdownService markdownService;
+
+    @Inject
+    private EntityStates entityStates;
 
     protected void initActions(@SuppressWarnings("unused") InitEvent event) {
 
@@ -61,22 +54,19 @@ public class ArticleEdit extends StandardEditor<Article> {
         window.addAction(popupMessageAction);
     }
 
+    @Subscribe("contentField")
+    public void onContentFieldTextChange(TextInputField.TextChangeEvent event) {
+        browserFrame.setSrcdoc(markdownService.toHtml(event.getText()));
+    }
+
+
     protected void popupMessage(@SuppressWarnings("unused") Action.ActionPerformedEvent event) {
         this.getWindow().showMessageDialog("Debug", event.getSource().getCaption(), Frame.MessageType.WARNING);
     }
 
-    private EntityStates getEntityStates() {
-        return getBeanLocator().get(EntityStates.NAME);
-    }
-
-    @Subscribe("contentField")
-    public void onContentFieldValueChange(HasValue.ValueChangeEvent<String> event) {
-
-    }
-
     @Subscribe(target = Target.DATA_CONTEXT)
     public void onPreCommit(DataContext.PreCommitEvent event) {
-        if (getEntityStates().isNew(getEditedEntity()) || doNotReloadEditedEntity()) {
+        if (entityStates.isNew(getEditedEntity()) || doNotReloadEditedEntity()) {
             articleDc.getItem().setAuthor(userSession.getUser());
         }
     }

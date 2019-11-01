@@ -17,7 +17,7 @@
         <property name="serverSelector" ref="cuba_ServerSelector"/>
         <property name="remoteServices">
             <map>
-                <entry key="blog_MarkdownToHtmlService" value="com.spel.blog.service.MarkdownToHtmlService"/>
+                <entry key="blog_MarkdownService" value="com.spel.blog.service.MarkdownService"/>
             </map>
         </property>
     </bean>

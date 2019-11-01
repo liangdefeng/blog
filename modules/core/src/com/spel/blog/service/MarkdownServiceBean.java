@@ -1,24 +1,24 @@
 package com.spel.blog.service;
 
-import com.google.common.base.Joiner;
-import com.vladsch.flexmark.ext.tables.TablesExtension;
-import com.vladsch.flexmark.html.HtmlRenderer;
-import com.vladsch.flexmark.parser.Parser;
-import com.vladsch.flexmark.parser.ParserEmulationProfile;
-import com.vladsch.flexmark.util.ast.Node;
-import com.vladsch.flexmark.util.builder.Extension;
-import com.vladsch.flexmark.util.data.MutableDataSet;
-import org.springframework.stereotype.Service;
-
 import java.io.*;
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service(MarkdownToHtmlService.NAME)
-public class MarkdownToHtmlServiceBean implements MarkdownToHtmlService {
+import com.google.common.base.Joiner;
+import com.vladsch.flexmark.ext.tables.TablesExtension;
+import com.vladsch.flexmark.html.HtmlRenderer;
+import com.vladsch.flexmark.parser.Parser;
+import com.vladsch.flexmark.parser.ParserEmulationProfile;
+import com.vladsch.flexmark.util.builder.Extension;
+import com.vladsch.flexmark.util.data.MutableDataSet;
 
-    public String convert(String markDown) {
+import org.springframework.stereotype.Service;
+
+@Service(MarkdownService.NAME)
+public class MarkdownServiceBean implements MarkdownService {
+
+    public String toHtml(String markDown) {
 
         BufferedReader reader = new BufferedReader(new StringReader(markDown));
         List<String> list = reader.lines().collect(Collectors.toList());
