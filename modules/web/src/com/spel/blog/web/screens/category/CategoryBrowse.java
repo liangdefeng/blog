@@ -5,7 +5,7 @@ import com.spel.blog.entity.Category;
 
 @UiController("blog_Category.browse")
 @UiDescriptor("category-browse.xml")
-@LookupComponent("categoriesTable")
+@LookupComponent("table")
 @LoadDataBeforeShow
-public class CategoryBrowse extends StandardLookup<Category> {
+public class CategoryBrowse extends MasterDetailScreen<Category> {
 }
