@@ -1,9 +1,8 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <window xmlns="http://schemas.haulmont.com/cuba/screen/window.xsd"
         caption="msg://browseCaption"
-        focusComponent="categoriesTable"
+        focusComponent="table"
         messagesPack="com.spel.blog.web.screens.category">
-    <data readOnly="true">
+    <data>
         <collection id="categoriesDc"
                     class="com.spel.blog.entity.Category"
                     view="category-category-view">
@@ -13,42 +12,78 @@
                 </query>
             </loader>
         </collection>
+        <instance id="categoryDc"
+                  class="com.spel.blog.entity.Category"
+                  view="category-category-view">
+            <loader/>
+        </instance>
+        <collection id="parentCategoriesDc" class="com.spel.blog.entity.Category" view="_minimal">
+            <loader id="parentCategoriesDl">
+                <query>
+                    <![CDATA[select e from blog_Category e]]>
+                </query>
+            </loader>
+        </collection>
     </data>
-    <dialogMode height="600"
-                width="800"/>
-    <layout expand="categoriesTable"
-            spacing="true">
-        <filter id="filter"
-                applyTo="categoriesTable"
-                dataLoader="categoriesDl">
-            <properties include=".*"/>
-        </filter>
-        <groupTable id="categoriesTable"
-                    width="100%"
-                    dataContainer="categoriesDc">
-            <actions>
-                <action id="create" type="create"/>
-                <action id="edit" type="edit"/>
-                <action id="remove" type="remove"/>
-                <action id="refresh" type="refresh"/>
-            </actions>
-            <columns>
-                <column id="parentCategory"/>
-                <column id="name"/>
-                <column id="description"/>
-            </columns>
-            <rowsCount/>
-            <buttonsPanel id="buttonsPanel"
-                          alwaysVisible="true">
-                <button id="createBtn" action="categoriesTable.create"/>
-                <button id="editBtn" action="categoriesTable.edit"/>
-                <button id="removeBtn" action="categoriesTable.remove"/>
-                <button id="refreshBtn" action="categoriesTable.refresh"/>
-            </buttonsPanel>
-        </groupTable>
-        <hbox id="lookupActions" spacing="true" visible="false">
-            <button action="lookupSelectAction"/>
-            <button action="lookupCancelAction"/>
-        </hbox>
+    <actions>
+        <action id="save" icon="icons/ok.png" caption="mainMsg://actions.Ok" shortcut="CTRL-ENTER"/>
+        <action id="cancel" icon="icons/cancel.png" caption="mainMsg://actions.Cancel" description="Esc"/>
+    </actions>
+    <dialogMode height="600" width="800"/>
+    <layout>
+        <split id="split" height="100%" orientation="horizontal" reversePosition="true" width="100%">
+            <vbox id="lookupBox" expand="table" height="100%" margin="false,true,false,false" spacing="true">
+                <filter id="filter" applyTo="table" dataLoader="categoriesDl">
+                    <properties include=".*"/>
+                </filter>
+                <treeDataGrid id="table"
+                              width="100%"
+                              dataContainer="categoriesDc"
+                              hierarchyProperty="parentCategory">
+                    <actions>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
+                        <action id="refresh" type="refresh"/>
+                    </actions>
+                    <columns>
+                        <column property="name"/>
+                        <column property="description"/>
+                        <column property="parentCategory"/>
+                    </columns>
+                    <buttonsPanel id="buttonsPanel"
+                                  alwaysVisible="true">
+                        <button id="createBtn" action="table.create"/>
+                        <button id="editBtn" action="table.edit"/>
+                        <button id="removeBtn" action="table.remove"/>
+                        <button id="refreshBtn" action="table.refresh"/>
+                    </buttonsPanel>
+                </treeDataGrid>
+                <hbox id="lookupActions" spacing="true" visible="false">
+                    <button action="lookupSelectAction"/>
+                    <button action="lookupCancelAction"/>
+                </hbox>
+            </vbox>
+            <vbox id="editBox" height="100%" margin="false,false,false,true" expand="fieldGroupBox" spacing="true">
+                <scrollBox id="fieldGroupBox">
+                    <form id="form" dataContainer="categoryDc">
+                        <column width="250px">
+                            <textField id="nameField" property="name"/>
+                            <textArea id="descriptionField" property="description" rows="5"/>
+                            <lookupPickerField id="parentCategoryField" optionsContainer="parentCategoriesDc"
+                                               property="parentCategory">
+                                <actions>
+                                    <action id="lookup" type="picker_lookup"/>
+                                </actions>
+                            </lookupPickerField>
+                        </column>
+                    </form>
+                </scrollBox>
+                <hbox id="actionsPane" spacing="true" visible="false">
+                    <button id="saveBtn" action="save"/>
+                    <button id="cancelBtn" action="cancel"/>
+                </hbox>
+            </vbox>
+        </split>
     </layout>
 </window>
