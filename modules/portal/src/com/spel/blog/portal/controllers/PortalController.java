@@ -25,6 +25,6 @@ public class PortalController {
             l.setQueryString("select u from sec$User u");
             model.addAttribute("users", dataService.loadList(l));
         }
-        return "index2";
+        return "index";
     }
 }
