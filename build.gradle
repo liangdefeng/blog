@@ -61,6 +61,7 @@ configure([globalModule, coreModule, webModule, portalModule]) {
     apply(plugin: 'cuba')
 
     dependencies {
+        testCompile('org.jmockit:jmockit:1.39')
         testCompile('junit:junit:4.12')
     }
 
@@ -135,6 +136,24 @@ configure(coreModule) {
         dbms = 'mysql'
         host = 'localhost'
         dbName = 'blog'
+        dbUser = 'root'
+        dbPassword = 'root'
+        connectionParams = '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC'
+    }
+
+    task createTestDb(dependsOn: assemble, description: 'Creates local MySql database for tests', type: CubaDbCreation) {
+        dbms = 'mysql'
+        host = 'localhost'
+        dbName = 'test_blog'
+        dbUser = 'root'
+        dbPassword = 'root'
+        connectionParams = '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC'
+    }
+
+    task updateTestDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
+        dbms = 'mysql'
+        host = 'localhost'
+        dbName = 'test_blog'
         dbUser = 'root'
         dbPassword = 'root'
         connectionParams = '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC'

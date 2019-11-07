@@ -49,6 +49,11 @@ public class BlogTestContainer extends TestContainer {
         dbUrl = resourceElem.attributeValue("url");
         dbUser = resourceElem.attributeValue("username");
         dbPassword = resourceElem.attributeValue("password");
+
+        dbDriver = "com.mysql.cj.jdbc.Driver";
+        dbUrl = "jdbc:mysql://localhost/test_blog?useSSL=false&allowMultiQueries=true&serverTimezone=UTC";
+        dbUser = "root";
+        dbPassword = "root";
     }
 
     public static class Common extends BlogTestContainer {
