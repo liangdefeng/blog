@@ -43,9 +43,9 @@
             </vbox>
         </split>
         <hbox id="editActions" spacing="true">
-            <button action="windowCommitAndClose"/>
+            <button id="windowCommitAndCloseButton" action="windowCommitAndClose"/>
             <button action="windowClose"/>
-            <button action="popupMessage" box.expandRatio="0.0"/>
+            <button id="popupMessageButton" action="popupMessage" box.expandRatio="0.0"/>
         </hbox>
     </layout>
 </window>

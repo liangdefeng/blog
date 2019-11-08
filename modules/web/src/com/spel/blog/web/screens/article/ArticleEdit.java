@@ -48,8 +48,7 @@ public class ArticleEdit extends StandardEditor<Article> {
 
         Action popupMessageAction = new BaseAction(POOPUP_MESSAGE)
                 .withIcon(icons.get(CubaIcon.EDITOR_CANCEL))
-                .withCaption(messages.getMainMessage("actions.Cancel"))
-                .withHandler(this::popupMessage);
+                .withCaption(messages.getMainMessage("actions.Cancel"));
 
         window.addAction(popupMessageAction);
     }
@@ -59,8 +58,8 @@ public class ArticleEdit extends StandardEditor<Article> {
         browserFrame.setSrcdoc(markdownService.toHtml(event.getText()));
     }
 
-
-    protected void popupMessage(@SuppressWarnings("unused") Action.ActionPerformedEvent event) {
+    @Subscribe("popupMessageButton")
+    public void popupMessage(@SuppressWarnings("unused") Button.ClickEvent event) {
         this.getWindow().showMessageDialog("Debug", event.getSource().getCaption(), Frame.MessageType.WARNING);
     }
 
