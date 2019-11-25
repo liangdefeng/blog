@@ -53,7 +53,7 @@ dependencies {
     appComponent('com.haulmont.addon.globalevents:cubaglevt-global:0.5.1')
 }
 
-def mysql = 'mysql:mysql-connector-java:8.0.15'
+def postgres = 'org.postgresql:postgresql:42.2.5'
 
 configure([globalModule, coreModule, webModule, portalModule]) {
     apply(plugin: 'java')
@@ -103,8 +103,8 @@ configure(coreModule) {
     dependencies {
         compile(globalModule)
         compileOnly(servletApi)
-        jdbc(mysql)
-        testRuntime(mysql)
+        jdbc(postgres)
+        testRuntime(postgres)
     }
 
     task cleanConf(description: 'Cleans up conf directory') {
@@ -124,39 +124,35 @@ configure(coreModule) {
     }
 
     task createDb(dependsOn: assembleDbScripts, description: 'Creates local database', type: CubaDbCreation) {
-        dbms = 'mysql'
+        dbms = 'postgres'
         host = 'localhost'
         dbName = 'blog'
-        dbUser = 'root'
+        dbUser = 'postgres'
         dbPassword = 'root'
-        connectionParams = '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC'
-    }
+        }
 
     task updateDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
-        dbms = 'mysql'
+        dbms = 'postgres'
         host = 'localhost'
         dbName = 'blog'
-        dbUser = 'root'
+        dbUser = 'postgres'
         dbPassword = 'root'
-        connectionParams = '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC'
-    }
+        }
 
     task createTestDb(dependsOn: assemble, description: 'Creates local MySql database for tests', type: CubaDbCreation) {
-        dbms = 'mysql'
+        dbms = 'postgres'
         host = 'localhost'
-        dbName = 'test_blog'
-        dbUser = 'root'
+        dbName = 'blog_test'
+        dbUser = 'postgres'
         dbPassword = 'root'
-        connectionParams = '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC'
     }
 
     task updateTestDb(dependsOn: assembleDbScripts, description: 'Updates local database', type: CubaDbUpdate) {
-        dbms = 'mysql'
+        dbms = 'postgres'
         host = 'localhost'
-        dbName = 'test_blog'
-        dbUser = 'root'
+        dbName = 'blog_test'
+        dbUser = 'postgres'
         dbPassword = 'root'
-        connectionParams = '?useSSL=false&allowMultiQueries=true&serverTimezone=UTC'
     }
 }
 
