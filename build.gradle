@@ -84,6 +84,9 @@ configure(globalModule) {
 
         runtime 'com.vladsch.flexmark:flexmark-all:0.50.42'
         compile 'com.vladsch.flexmark:flexmark-all:0.50.42'
+
+        runtime 'org.apache.lucene:lucene-analyzers-smartcn:7.5.0'
+        compile 'org.apache.lucene:lucene-analyzers-smartcn:7.5.0'
     }
 
     entitiesEnhancing {
