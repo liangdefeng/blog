@@ -16,8 +16,11 @@
     <!--Application components-->
     <context-param>
         <param-name>appComponents</param-name>
-        <param-value>com.haulmont.cuba com.haulmont.reports cn.cuba.trans com.haulmont.addon.restapi com.haulmont.fts
-            com.haulmont.addon.dashboard com.haulmont.charts com.haulmont.addon.globalevents</param-value>
+        <param-value>com.haulmont.cuba com.haulmont.reports cn.cuba.trans com.haulmont.fts com.haulmont.addon.dashboard
+            com.haulmont.charts com.haulmont.addon.globalevents com.haulmont.addon.emailtemplates com.haulmont.addon.dnd
+            com.haulmont.addon.idp com.haulmont.addon.search com.haulmont.addon.grapesjs com.haulmont.addon.admintools
+            com.haulmont.addon.dashboardchart com.haulmont.addon.cubajm com.haulmont.addon.sdbmt com.haulmont.addon.tour
+            com.haulmont.addon.bi com.haulmont.addon.restapi</param-value>
     </context-param>
     <listener>
         <listener-class>com.haulmont.cuba.core.sys.AppContextLoader</listener-class>
